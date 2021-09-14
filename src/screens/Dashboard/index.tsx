@@ -3,6 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'styled-components';
+import { useAuth } from '../../hooks/auth';
 
 import { HighlightCard } from '../../components/HighlightCard';
 import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
@@ -42,6 +43,8 @@ interface HighlightData {
 
 export function Dashboard() {
   const theme = useTheme();
+  const { signOut } = useAuth();
+
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlitghtData, setHighlightData] = useState<HighlightData>({} as HighlightData);
   const [isLoading, setIsLoading] = useState(true);
@@ -168,7 +171,7 @@ export function Dashboard() {
                   </User>
                 </UserInfo>
 
-                <LogoutButton onPress={() => {}}>
+                <LogoutButton onPress={signOut}>
                   <Icon name="power" />
                 </LogoutButton>
               </UserWrapper>
