@@ -12,6 +12,7 @@ import uuid from 'react-native-uuid';
 
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 import { Button } from '../../components/Forms/Button';
 import { InputForm } from '../../components/Forms/InputForm';
@@ -46,6 +47,7 @@ const schema = Yup.object().shape({
 });
 
 export function Register() {
+  const { user } = useAuth();
   const navigation = useNavigation();
   const { 
     control, 
@@ -93,7 +95,7 @@ export function Register() {
     }
 
     try {
-      const dataKey = '@gofinances:transactions';
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
 
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];

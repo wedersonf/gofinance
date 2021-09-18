@@ -7,6 +7,7 @@ import { useTheme } from 'styled-components';
 import { addMonths, subMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useFocusEffect } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 import { HistoryCard } from '../../components/HistoryCard';
 
@@ -44,7 +45,8 @@ interface CategoryData {
 
 export function Resume() {
   const theme = useTheme();
-  
+  const { user } = useAuth();
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date);
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([])
@@ -59,7 +61,7 @@ export function Resume() {
 
   async function loadData() {
     setIsLoading(true);
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
