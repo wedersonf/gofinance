@@ -9,7 +9,7 @@ jest.mock('expo-auth-session');
 
 fetchMock.enableMocks();
 
-describe('Auth Hook', () => {+
+describe('Auth Hook', () => {
   it('User should not connect if cancel authentication with Google', async () => {
     const googleMocked = mocked(startAsync as any);
     googleMocked.mockReturnValueOnce({
