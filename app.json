@@ -22,9 +22,10 @@
       "package": "com.gofinances",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregraoundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#5636D3"
       }
-    }
+    },
+    "description": ""
   }
 }
